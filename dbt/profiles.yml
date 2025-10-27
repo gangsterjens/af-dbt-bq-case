@@ -1,0 +1,12 @@
+# dbt/profiles.yml
+dn_case_bq:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: dn-case-476208
+      dataset: case_data_raw
+      threads: 4
+      keyfile: /app/Data/creds/dn-case-476208-b05c98ae2260.json
+      priority: interactive

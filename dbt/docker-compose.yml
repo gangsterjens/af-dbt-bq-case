@@ -1,0 +1,9 @@
+services:
+  dbt:
+    build:
+      context: ./dbt
+      dockerfile: Dockerfile
+    container_name: dncase_dbt
+    volumes:
+      - ./dbt:/app
+    command: ["dbt", "run"]

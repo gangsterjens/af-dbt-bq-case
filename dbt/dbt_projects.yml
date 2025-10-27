@@ -1,0 +1,14 @@
+# dbt/dbt_project.yml
+name: "dn_case"
+version: "1.0"
+config-version: 2
+
+profile: "dn_case_bq"
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target"]
+
+models:
+  dn_case:
+    +materialized: view

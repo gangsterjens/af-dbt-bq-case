@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dncase_ingest
+    env_file:
+      - .env
+    volumes:
+      - ./Data:/app/Data   # Mount your data files
+      - ./src:/app/src     # Mount source for dev updates
+    command: ["python", "handler.py", "articles"]

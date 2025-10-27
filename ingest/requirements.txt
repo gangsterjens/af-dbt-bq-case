@@ -1,0 +1,7 @@
+pandas
+pyarrow
+google-cloud-bigquery
+google-cloud-bigquery-storage
+pydantic
+pydantic-settings
+python-dotenv

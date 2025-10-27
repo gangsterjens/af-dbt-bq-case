@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  airflow:
+    image: apache/airflow:2.9.3
+    container_name: airflow-local
+    restart: always
+    env_file:
+      - ../ingest/.env   
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=false
+      - AIRFLOW__WEBSERVER__RBAC=True
+      - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
+      - _PIP_ADDITIONAL_REQUIREMENTS=
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - /var/run/docker.sock:/var/run/docker.sock 
+    ports:
+      - "8080:8080"
+    command: bash -c "
+        airflow db init &&
+        airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com &&
+        airflow webserver & airflow scheduler
+      "
