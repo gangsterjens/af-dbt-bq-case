@@ -15,3 +15,12 @@ sources:
       - name: keywords
       - name: teaser_positions
       - name: segment_stats
+  
+  - name: case_data_staging
+    database: dn-case-476208
+    schema: case_data_staging
+    description: "Cleaner level of data than raw ingestion, datatypes should be correct in this layer"
+    tables:
+      - name: aggr_segment_stats
+        description: an aggregated table of segment_stats data that only have rows per date/hour, not per segment.
+        

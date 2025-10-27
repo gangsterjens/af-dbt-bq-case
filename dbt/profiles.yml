@@ -6,7 +6,8 @@ dn_case_bq:
       type: bigquery
       method: service-account
       project: dn-case-476208
-      dataset: case_data_raw
+      dataset: case_data
       threads: 4
       keyfile: /app/Data/creds/dn-case-476208-b05c98ae2260.json
       priority: interactive
+      location: EU

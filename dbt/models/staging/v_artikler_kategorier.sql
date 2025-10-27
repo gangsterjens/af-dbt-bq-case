@@ -1,4 +1,5 @@
-{{ config(materialized='view') }}
+{{ config(tags=['ingest'], materialized='view') }}
+
 
 SELECT
   lantern_id, 

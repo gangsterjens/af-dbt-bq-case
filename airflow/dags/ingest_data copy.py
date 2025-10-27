@@ -21,34 +21,11 @@ dag = DAG(
 )
 
 
-def exec_ingest(ingest_arg: str, dag: DAG):
-    """Helper to create DockerOperator tasks for each ingest type."""
-    return DockerOperator(
-        task_id=f"ingest_{ingest_arg}",
-        image="dncase_ingest:latest",
-        command=f"python handler.py {ingest_arg}",
-        docker_url="unix://var/run/docker.sock",
-        network_mode="bridge",
-        environment={
-            "BQ_PROJECT": os.getenv("BQ_PROJECT", "dn-case-476208"),
-            "BQ_DATASET": os.getenv("BQ_DATASET", "case_data_raw"),
-        },
-        dag=dag,
-    )
-
-ingest_articles = exec_ingest("articles", dag)
-ingest_entities = exec_ingest("entities", dag)
-ingest_keywords = exec_ingest("keywords", dag)
-ingest_teaser = exec_ingest("teaser", dag)
-ingest_gzip = exec_ingest("gzip", dag)
-
-
-
 
 dbt_run = DockerOperator(
     task_id="dbt_run",
     image="dncase_dbt:latest",
-    command="run --select tag:ingest",
+    command="run --select tag:mart",
     docker_url="unix://var/run/docker.sock",
     network_mode="bridge",
     environment={

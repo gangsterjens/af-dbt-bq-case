@@ -10,5 +10,8 @@ target-path: "target"
 clean-targets: ["target"]
 
 models:
-  dn_case:
-    +materialized: view
+  +materialized: view
+  staging: 
+    +schema: staging
+  mart:
+    +schema: mart
