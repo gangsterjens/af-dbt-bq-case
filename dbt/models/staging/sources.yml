@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: case_data_raw
+    database: dn-case-476208
+    schema: case_data_raw
+    description: "Raw ingested data from DN-case ingestion pipeline"
+    tables:
+      - name: artikler_hoved
+        description: "Main article metadata ingested from DN API"
+      - name: artikler_byline
+      - name: artikler_kategorier
+      - name: artikler_tags
+      - name: entities
+      - name: keywords
+      - name: teaser_positions
+      - name: segment_stats

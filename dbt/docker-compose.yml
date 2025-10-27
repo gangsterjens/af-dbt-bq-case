@@ -1,9 +1,14 @@
+# dbt/docker-compose.yml
+version: "3.9"
+
 services:
   dbt:
     build:
-      context: ./dbt
+      context: .
       dockerfile: Dockerfile
+    image: dncase_dbt:latest
     container_name: dncase_dbt
     volumes:
-      - ./dbt:/app
-    command: ["dbt", "run"]
+      - .:/app
+#    command: ["dbt", "debug"]
+    command: ["run"]
