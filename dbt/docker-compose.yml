@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     image: dncase_dbt:latest
     container_name: dncase_dbt
+    ports:
+    - "8081:8081"   
     volumes:
       - .:/app
 #    command: ["dbt", "debug"]

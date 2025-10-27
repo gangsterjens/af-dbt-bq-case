@@ -12,9 +12,9 @@ default_args = {
 
 # Define the DAG
 dag = DAG(
-    dag_id="ingest_dag",
+    dag_id="performance_frontpage_transformation",
     default_args=default_args,
-    description="Run DN-case ingestion pipeline for all sources",
+    description="Run DN-case transformation pipeline for visualisation dataset",
     start_date=datetime(2025, 10, 1),
     schedule_interval=None,
     catchup=False,
@@ -25,7 +25,7 @@ dag = DAG(
 dbt_run = DockerOperator(
     task_id="dbt_run",
     image="dncase_dbt:latest",
-    command="run --select tag:mart",
+    command="run --select position_performance",
     docker_url="unix://var/run/docker.sock",
     network_mode="bridge",
     environment={
@@ -37,4 +37,4 @@ dbt_run = DockerOperator(
 
 
 
-[ingest_gzip, ingest_articles, ingest_entities, ingest_keywords, ingest_teaser] >> dbt_run
+dbt_run
