@@ -1,4 +1,4 @@
-# DN-Case
+#  End to end case showcasing pipeline with Airflow, dbt and biquery
 
 ### Three docker images, one ingest-image, one dbt-image. and a airflow-image that orchestrates the two images
 
