@@ -12,3 +12,5 @@
 This is naturally in .gitignore
 but must be stored under ingest/Data/creds/creds.json
 the file must also be put into dbt-folder
+
+## PS The project-names that are coded into different files (e.g airflow etc) is deleted. So no point in trying to utlize that <3
